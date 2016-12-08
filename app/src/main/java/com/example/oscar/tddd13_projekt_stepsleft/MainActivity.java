@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 s.undoStep();
             }
         });
+
         layout.addView(testButtonUndo);
 
         setContentView(layout);
