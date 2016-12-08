@@ -1,5 +1,7 @@
 package com.example.oscar.tddd13_projekt_stepsleft.StepsLeft;
 
+import android.view.View;
+
 import java.util.ArrayList;
 
 /**
@@ -9,6 +11,8 @@ import java.util.ArrayList;
 public abstract class StepsLeftSpecifier {
 
    public abstract ArrayList<String> getStepLabels();
+
+   public abstract ArrayList<View> getStepViews();
 
    public abstract int getIconColorUncompleted();
 

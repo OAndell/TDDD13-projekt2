@@ -2,6 +2,7 @@ package com.example.oscar.tddd13_projekt_stepsleft.StepsLeft;
 
 import android.content.Context;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ public class Step extends LinearLayout{
 
     private StepIcon icon;
     private TextView companionText;
+    private View displayedView;
 
     private boolean complete = false;
     private boolean selected = false;
@@ -30,6 +32,7 @@ public class Step extends LinearLayout{
         companionText = new TextView(context);
         companionText.setText(specifier.getStepLabels().get(stepNumber-1));
         this.addView(companionText);
+        displayedView = specifier.getStepViews().get(stepNumber-1);
     }
 
     public void select(){
@@ -60,5 +63,7 @@ public class Step extends LinearLayout{
         return selected;
     }
 
-
+    public View getDisplayedView() {
+        return displayedView;
+    }
 }
