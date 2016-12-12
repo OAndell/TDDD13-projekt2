@@ -12,13 +12,13 @@ import java.util.ArrayList;
  * Component used for creating a step by step design pattern that can used in for example account
  * registration. Every step is represented by a Step class.
  * @see Step
- * @see SLSpecifier for customizion of the StepsLeft object.
+ * @see StepAdapter for customizion of the StepsLeft object.
  * @author Oscar Andell
  */
 public class StepsLeft extends LinearLayout {
 
     private Context context;
-    private SLSpecifier specifier; //Holds settings for the component.
+    private StepAdapter specifier; //Holds settings for the component.
     private ArrayList<Step> stepList = new ArrayList<>(); //Hold all steps.
     private int numberOfSteps = 0; //Total number of steps in component.
     private int currentStep = 0; //Current step selected.
@@ -32,24 +32,33 @@ public class StepsLeft extends LinearLayout {
     /**
      * Initialize a StepsLeft object.
      * @param context
-     * @param specifier SLSpecifier that hold settings that will be used to create the component.
-     * @see SLSpecifier
+     * @param adapter StepAdapter that hold settings that will be used to create the component.
+     * @see StepAdapter
      */
-    public StepsLeft(Context context, SLSpecifier specifier) {
+    public StepsLeft(Context context, StepAdapter adapter) {
         super(context);
-        initialize(context, specifier);
+        initialize(context, adapter);
+    }
+
+    /**
+     * Initialize a StepsLeft object with default example adapter.
+     * @param context
+     */
+    public StepsLeft(Context context){
+        super(context);
+        initialize(context, new MyAdapter(context));
     }
 
     /**
      * Private function that sets up the layout of the component and creates all the step objects
      */
-    private void initialize(Context context, SLSpecifier specifier){
+    private void initialize(Context context, StepAdapter adapter){
         this.context = context;
-        this.specifier = specifier;
+        this.specifier = adapter;
         columnLayout = new LinearLayout(context);
         columnLayout.setOrientation(VERTICAL);
-        //Create a step for every label specified in the specifier.
-        for (int i = 0; i < specifier.getStepLabels().size(); i++) {
+        //Create a step for every label specified in the adapter.
+        for (int i = 0; i < adapter.getStepLabels().size(); i++) {
             initStep(); //Create and add step
         }
         this.setOrientation(HORIZONTAL);
@@ -157,10 +166,21 @@ public class StepsLeft extends LinearLayout {
     }
 
     /**
+     * Get a specific step object.
+     * @param pos Position of the step.
+     * @see Step
+     */
+    public Step getStep(int pos){
+        return stepList.get(pos);
+    }
+
+    /**
      * Check if all steps is complete.
      * @return True if all steps are complete.
      */
     public boolean isAllStepsComplete(){
         return complete;
     }
+
+
 }

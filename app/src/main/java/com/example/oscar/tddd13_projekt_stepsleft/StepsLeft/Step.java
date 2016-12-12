@@ -21,16 +21,16 @@ public class Step extends LinearLayout{
     private boolean complete = false;
     private boolean selected = false;
 
-    public Step(Context context, int stepNumber, String label, View view, SLSpecifier specifier){
+    public Step(Context context, int stepNumber, String label, View view, StepAdapter stepAdapter){
         super(context);
         this.setOrientation(HORIZONTAL);
         this.setGravity(Gravity.CENTER);
         //Create the StepIcon object in this step.
-        icon = new StepIcon(context, specifier.getIconSize() , String.valueOf(stepNumber+1), specifier.getIconColorUncompleted());
-        //Get the colors that is specified in the SLSpecifier
-        icon.setColorComplete(specifier.getIconColorCompleted());
-        icon.setColorUncompleted(specifier.getIconColorUncompleted());
-        icon.setColorSelected(specifier.getIconColorSelected());
+        icon = new StepIcon(context, stepAdapter.getIconSize() , String.valueOf(stepNumber+1), stepAdapter.getIconColorUncompleted());
+        //Get the colors that is specified in the StepAdapter
+        icon.setColorComplete(stepAdapter.getIconColorCompleted());
+        icon.setColorUncompleted(stepAdapter.getIconColorUncompleted());
+        icon.setColorSelected(stepAdapter.getIconColorSelected());
         icon.uncomplete(); //Default mode is uncompleted
         this.addView(icon);
         companionText = new TextView(context);

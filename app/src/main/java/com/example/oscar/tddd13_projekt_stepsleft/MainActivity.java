@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
 
-        //Create stepsLeft object with example settings
-        final StepsLeft s = new StepsLeft(this, Example.getExampleSettings(this));
+        //Create stepsLeft object with the default adapter.
+        final StepsLeft s = new StepsLeft(this);
         //It is possible to add steps after creating StepsLeft object.
         s.addStep("Step 5", new Button(context));
         layout.addView(s);
@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 s.undoStep();
             }
         });
-
         layout.addView(testButtonUndo);
         setContentView(layout);
     }

@@ -3,14 +3,14 @@ import android.view.View;
 import java.util.ArrayList;
 
 /**
- * The SLSpecifier abstract class is used to specify settings in the StepsLeftObject. It specifies
+ * The StepAdapter abstract class is used to specify settings in the StepsLeftObject. It specifies
  * the color of the step icons, the label text next to the icons and the views that should be
  * displayed when a specific step is selected.
  * NOTE: the functions getStepLabels() and getStepViews() should return arrays of the same size.
  * @see StepsLeft
  * @author Oscar Andell
  */
-public abstract class SLSpecifier {
+public abstract class StepAdapter {
 
    /**
     * Specify the label text that is shown next to the step icon.
